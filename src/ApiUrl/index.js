@@ -1,0 +1,1 @@
+export const apiurl='http://localhost/Agri-AI/src/php/'
