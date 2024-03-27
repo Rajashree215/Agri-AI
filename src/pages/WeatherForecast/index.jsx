@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import weatherforecastbg from "../../assets/bgimgs/weatherforecastbg.png";
 import Appheader from "../../components/common/Appheader";
 import CategoryHeader from "../../components/CategoryHeader";
@@ -9,9 +9,25 @@ import { PageStyles } from "../CropInsights/style";
 import { Typography } from "@mui/material";
 
 export default function WeatherForecast() {
+  const [titlescroll, setTitlescroll] = useState("");
+
+  useEffect(() => {
+    window.onscroll = () => {
+      if (window.scrollY > 64) {
+        setTimeout(() => {
+          setTitlescroll("Weather Forecast");
+        }, 75);
+      } else {
+        setTimeout(() => {
+          setTitlescroll("");
+        }, 75);
+      }
+    };
+  }, []);
+
   return (
     <PageStyles>
-      <Appheader />
+      <Appheader titlescroll={titlescroll} />
       <CategoryHeader
         title="Weather Forecast"
         subtitle="The scientific study of weather and weather forecasting is called meteorology."

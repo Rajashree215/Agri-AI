@@ -15,9 +15,9 @@ export default function Login() {
     email: "",
     pwd: "",
   });
-  const [errormsg, setErrormsg] = useState(false);
+  const [severity, setSeverity] = useState("");
   const [showToaster, setShowToaster] = useState(false);
-  const [msg,setMsg]=useState('');
+  const [msg, setMsg] = useState("");
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -36,7 +36,12 @@ export default function Login() {
       Object.values(login).filter((item) => item).length !==
       Object.keys(login).length
     ) {
-      setErrormsg(true);
+      setSeverity("error");
+      setMsg("Enter all the fields!");
+      setShowToaster(true);
+      setTimeout(() => {
+        setShowToaster(false);
+      }, 5000);
     } else {
       const res = await axios.post(`${apiurl}login.php`, {
         email: login.email,
@@ -45,20 +50,33 @@ export default function Login() {
 
       if (res.data === "OK") {
         setIsLoggedIn(true);
-        navigate(PATH.HOME);
+        setSeverity("success");
+        setMsg("Login Success!!");
+        setShowToaster(true);
+        localStorage.setItem("email", login.email);
+        setTimeout(() => {
+          navigate(PATH.HOME);
+          setShowToaster(false);
+        }, 3000);
+        setLogin({
+          email: "",
+          pwd: "",
+        });
       } else if (res.data === "INCORRECT") {
         setMsg("Incorrect password");
+        setSeverity("error");
         setShowToaster(true);
+        setTimeout(() => {
+          setShowToaster(false);
+        }, 5000);
       } else {
         setMsg("No email found please register");
+        setSeverity("error");
         setShowToaster(true);
+        setTimeout(() => {
+          setShowToaster(false);
+        }, 5000);
       }
-
-      setLogin({
-        email: "",
-        pwd: "",
-      });
-      setErrormsg(false);
     }
   };
 
@@ -84,18 +102,21 @@ export default function Login() {
             ))}
           </Box>
 
-          <a
-            href=""
-            style={{ position: "relative", left: "6vw", bottom: "3vh" }}
+          <Button
+            disableRipple
+            className="forgetpwd"
+            onClick={() => {
+              navigate(PATH.FORGOTPASSWORD);
+            }}
           >
             <Typography variant="caption">Forget Password</Typography>
-          </a>
+          </Button>
 
-          {errormsg && (
+          {/* {errormsg && (
             <Typography variant="caption" color="red">
-              Enter all the fields!
+              
             </Typography>
-          )}
+          )} */}
 
           <Button
             variant="contained"
@@ -107,7 +128,7 @@ export default function Login() {
         </Card>
       </Box>
       {showToaster && (
-        <Toaster show={showToaster} severity="error" msg={msg} />
+        <Toaster show={showToaster} severity={severity} msg={msg} />
       )}
     </LoginStyles>
   );

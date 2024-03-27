@@ -5,7 +5,7 @@ import img4 from "../../assets/bgimgs/infoimgs/cropinsights/img4.png";
 
 export const cropData = [
   {
-    title: "Pest and Disease Management",
+    title: "pest and Disease Management",
     info: "Pests and diseases are part of the natural environmental system. In this system there is a balance between predators and pests. This is nature's way of controlling populations. The creatures that we call pests and the organisms that cause disease only become 'pest and diseases' when their activities start to damage crops and affect yields.",
     image: img1,
   },

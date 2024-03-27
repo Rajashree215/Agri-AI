@@ -4,7 +4,8 @@ import { AuthContext } from "../context/AuthContextProvider";
 
 export default function PrivateRouter() {
   const { isLoggedIn } = useContext(AuthContext);
-    let auth = { token: isLoggedIn ? true : false };
+  // let auth = { token: isLoggedIn ? true : false };
+  let auth = { token: localStorage.getItem("email") ? true : false };
   // let auth = { token: true };
   return auth.token ? <Outlet /> : <Navigate to="/" />;
 }

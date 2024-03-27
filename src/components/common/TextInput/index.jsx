@@ -14,6 +14,7 @@ export default function TextInput({
   placeholder,
   borderRadius,
   onChange,
+  maxLength
 }) {
   return (
     <>
@@ -31,7 +32,8 @@ export default function TextInput({
         onChange={onChange}
         fullWidth={fullWidth}
         InputProps={{
-          sx:{borderRadius:borderRadius}
+          sx:{borderRadius:borderRadius},
+          maxLength:{maxLength}
         }}
       />
     </>
