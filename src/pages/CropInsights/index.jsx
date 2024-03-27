@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
 import Appheader from "../../components/common/Appheader";
 import cropinsightbg from "../../assets/bgimgs/cropinsightbg.png";
@@ -9,9 +9,25 @@ import { PageStyles } from "./style";
 import { cropData } from "./data";
 
 export default function CropInsights() {
+  const [titlescroll, setTitlescroll] = useState("");
+
+  useEffect(() => {
+    window.onscroll = () => {
+      if (window.scrollY > 64) {
+        setTimeout(() => {
+          setTitlescroll("Crop Insights");
+        }, 75);
+      } else {
+        setTimeout(() => {
+          setTitlescroll("");
+        }, 75);
+      }
+    };
+  }, []);
+
   return (
     <PageStyles>
-      <Appheader />
+      <Appheader titlescroll={titlescroll} />
       <CategoryHeader
         title="Crop Insights"
         subtitle="In the world of farming, knowledge is the key to abundant harvests. Crop Insight unlocks the door to a bountiful future"
@@ -39,7 +55,7 @@ export default function CropInsights() {
         />
       ))}
 
-      <Footer/>
+      <Footer />
     </PageStyles>
   );
 }

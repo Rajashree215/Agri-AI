@@ -1,9 +1,6 @@
 <?php
 include('./db/dbconfig.php');
-
-header('Access-Control-Allow-Origin:*');
-header('Access-Control-Allow-Headers:*');
-header('Content-Type:application/json');
+include('./headers/headerconfig.php');
 
 $data = json_decode(file_get_contents('php://input'));
 
@@ -17,9 +14,9 @@ $query = "INSERT INTO `user` (`name`,`email`,`phoneno`,`pass`,`city`) VALUES('$n
 if (!empty($name) && !empty($email) && !empty($phoneno) && !empty($pwd) && !empty($city)) {
     $sql = mysqli_query($con, $query);
     if ($sql) {
-        echo json_encode(['msg' => "Registration successfull!"]);
+        echo json_encode(['msg' => "OK"]);
     } else {
-        echo json_encode(['msg' => "Registration failed"]);
+        echo json_encode(['msg' => "NOT OK"]);
     }
 }
 else{

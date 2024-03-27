@@ -19,6 +19,7 @@ export default function SignUp() {
     city: "",
   });
   const [msg, setMsg] = useState("");
+  const [severity, setSeverity] = useState("");
   const [showToaster, setShowToaster] = useState(false);
 
   const navigate = useNavigate();
@@ -33,16 +34,25 @@ export default function SignUp() {
   };
 
   const handleClick = async () => {
-    // navigate(PATH.HOME);
-
     if (
-      Object.values(signupdata).filter((item) => item) !==
+      Object.values(signupdata).filter((item) => item).length !==
       Object.keys(signupdata).length
     ) {
+      console.log("if");
       setMsg("All fields are required");
+      setSeverity('error')
       setShowToaster(true);
+      setTimeout(() => {
+        setShowToaster(false);
+      }, 5000);
     } else if (signupdata.pwd !== signupdata.cpwd) {
+      console.log("elseif");
       setMsg("Password and Confirm Password doesn't match");
+      setSeverity('error')
+      setShowToaster(true);
+      setTimeout(() => {
+        setShowToaster(false);
+      }, 5000);
     } else {
       const res = await axios.post(`${apiurl}signup.php`, {
         name: signupdata.name,
@@ -52,16 +62,27 @@ export default function SignUp() {
         city: signupdata.city,
       });
       console.log(res, res.data);
-    }
 
-    setSignupdata({
-      name: "",
-      email: "",
-      phoneno: "",
-      pwd: "",
-      cpwd: "",
-      city: "",
-    });
+      if(res.data.msg==='OK')
+      {
+        setMsg("Registration Successfull!!");
+        setSeverity('success');
+        setShowToaster(true);
+        setTimeout(()=>{
+          navigate(PATH.LOGIN);
+          setShowToaster(false);
+        },3000)
+      }
+      
+      setSignupdata({
+        name: "",
+        email: "",
+        phoneno: "",
+        pwd: "",
+        cpwd: "",
+        city: "",
+      });
+    }
   };
 
   return (
@@ -95,7 +116,7 @@ export default function SignUp() {
           </Button>
         </Card>
       </Box>
-      <Toaster show={showToaster} severity="error" msg={msg} />
+      {showToaster && <Toaster show={showToaster} severity={severity} msg={msg} />}
     </SignUpStyles>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Appheader from "../../components/common/Appheader";
 import CategoryHeader from "../../components/CategoryHeader";
 import InfoCard from "../../components/common/InfoCard";
@@ -9,9 +9,25 @@ import { Typography } from "@mui/material";
 import { MarketData } from "./data";
 
 export default function MarketTrends() {
+  const [titlescroll, setTitlescroll] = useState("");
+
+  useEffect(() => {
+    window.onscroll = () => {
+      if (window.scrollY > 64) {
+        setTimeout(() => {
+          setTitlescroll("Market Trends");
+        }, 75);
+      } else {
+        setTimeout(() => {
+          setTitlescroll("");
+        }, 75);
+      }
+    };
+  }, []);
+
   return (
     <PageStyles>
-      <Appheader />
+      <Appheader titlescroll={titlescroll} />
       <CategoryHeader
         title="Market Trends"
         image={markettrendsbg}
@@ -24,7 +40,9 @@ export default function MarketTrends() {
         decision-makers, entrepreneurs, and investors through the ever-shifting
         currents of opportunity and risk. In the fast-paced realm of markets,
         understanding and interpreting trends is not merely a skill but a
-        strategic imperative.
+        strategic imperative. Rise of Plant-Based Proteins: Growing awareness of
+        the environmental and health implications of meat consumption is driving
+        demand for plant-based protein alternatives
       </Typography>
 
       {MarketData.map((data, index) => (

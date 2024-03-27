@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import loginbg from "../../assets/bgimgs/loginbg.png";
 
-export const LoginStyles = styled("div")(() => ({
-  ".loginbox": {
+export const FpasswordStyles = styled("div")(({ theme }) => ({
+  ".fpwdbox": {
     backgroundImage: `url(${loginbg})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
@@ -12,23 +12,24 @@ export const LoginStyles = styled("div")(() => ({
   ".card": {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "space-evenly",
+    justifyContent: "space-around",
     alignItems: "center",
-    height: "55vh",
+    height: "50dvh",
     backgroundColor: "#fff",
-    width: "30vw",
+    width: "32vw",
     padding: "3vh",
     position: "absolute",
-    top: "15vh",
+    top: "20vh",
     right: "15vw",
     borderRadius: "10px",
+    overflowY: "auto",
   },
   ".textinput": {
     color: "#707070",
-    width: "20vw",
+    width: "23vw",
     borderColor: "#3BB69A",
   },
-  ".loginbtn": {
+  ".submitbtn": {
     textTransform: "none",
     width: "70%",
     backgroundColor: "#3BB69A",
@@ -37,15 +38,7 @@ export const LoginStyles = styled("div")(() => ({
       backgroundColor: "#0a9b7a",
     },
   },
-  ".forgetpwd": {
-    position: "relative",
-    left: "6vw",
-    bottom: "3vh",
-    textTransform: "none",
-    textDecoration: "underline",
-    "&:hover": {
-      textDecoration: "underline",
-      backgroundColor: "#fff",
-    },
-  },
+  '.typoclass':{
+    color:'#147145',
+  }
 }));
