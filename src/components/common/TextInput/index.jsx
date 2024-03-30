@@ -11,10 +11,12 @@ export default function TextInput({
   className,
   size,
   fullWidth,
+  width,
   placeholder,
   borderRadius,
   onChange,
-  maxLength
+  maxLength,
+  disabled,
 }) {
   return (
     <>
@@ -23,12 +25,14 @@ export default function TextInput({
       </label>
       <TextField
         value={value}
+        style={{width:width}}
         variant={variant}
         type={type}
         name={name}
         className={className}
         size={size}
         placeholder={placeholder}
+        disabled={disabled}
         onChange={onChange}
         fullWidth={fullWidth}
         InputProps={{

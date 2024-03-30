@@ -6,7 +6,6 @@ import landingimg from "../../assets//bgimgs/person-utilizing-ai-.png";
 import groupimg from '../../assets/bgimgs/groupimg.png';
 import { useNavigate } from "react-router-dom";
 import { PATH } from "../../constants/routerConstant";
-import { Col, Container, Row } from "react-bootstrap";
 import { services } from "./data";
 import ServiceCard from "../../components/common/ServiceCard";
 import Footer from "../../components/common/Footer";

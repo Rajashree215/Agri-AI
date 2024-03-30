@@ -22,13 +22,14 @@ export const HomeStyles = styled("div")(({ theme }) => ({
   },
   ".chatbox": {
     backgroundColor: "#fff",
-    padding: "3vh 2vw",
+    padding: "3vh 3vw",
     width: "60%",
-    height: "16vh",
+    minHeight: "16vh",
     borderRadius: "10px",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-around",
+    gap:'2vh'
   },
   ".chat-typo": {
     textAlign: "center",
@@ -43,8 +44,12 @@ export const HomeStyles = styled("div")(({ theme }) => ({
     textTransform: "none",
     backgroundColor: "#74B49B",
     borderRadius: 0,
-    padding: "5px 4vw",
+    padding: "5px 1vw",
     fontWeight: "bold",
+    width:'25vh',
+    '&:hover':{
+      backgroundColor:'#669985',
+    }
   },
   ".ctxtbox": {
     padding: "4vh 3vw",

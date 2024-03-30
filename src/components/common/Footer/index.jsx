@@ -48,7 +48,7 @@ export default function Footer() {
 
           <Box className="socials">
             <IconButton> <a href="https://www.facebook.com/"><img src={fb} alt="" height={25} width={25} /></a> </IconButton>
-            <IconButton> <a href="mailto:yourmail@abc.com"><img src={gmail} alt="" height={25} width={25} /></a> </IconButton>
+            <IconButton> <a href="mailto:agriwithai@gmail.com"><img src={gmail} alt="" height={25} width={25} /></a> </IconButton>
             <IconButton> <a href="https://www.instagram.com/"><img src={insta} alt="" height={25} width={25} /></a> </IconButton>
             <IconButton> <a href="https://api.whatsapp.com/send?phone=911234567890"><img src={whatsapp} alt="" height={25} width={25} /></a> </IconButton>
             {/* for whatsapp, give your phone number with country code  
