@@ -18,7 +18,8 @@ export default function Login() {
   const [severity, setSeverity] = useState("");
   const [showToaster, setShowToaster] = useState(false);
   const [msg, setMsg] = useState("");
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, setIsLoggedIn, uname, setUname } =
+    useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -48,12 +49,16 @@ export default function Login() {
         password: login.pwd,
       });
 
-      if (res.data === "OK") {
+      if (res.data.msg === "OK") {
+        console.log(res.data);
+        let username = res.data.name;
         setIsLoggedIn(true);
+        setUname(username);
         setSeverity("success");
         setMsg("Login Success!!");
         setShowToaster(true);
         localStorage.setItem("email", login.email);
+        localStorage.setItem("uname", username);
         setTimeout(() => {
           navigate(PATH.HOME);
           setShowToaster(false);
@@ -62,7 +67,7 @@ export default function Login() {
           email: "",
           pwd: "",
         });
-      } else if (res.data === "INCORRECT") {
+      } else if (res.data.msg === "INCORRECT") {
         setMsg("Incorrect password");
         setSeverity("error");
         setShowToaster(true);

@@ -13,6 +13,7 @@ export default function TextInput({
   fullWidth,
   width,
   placeholder,
+  autoComplete,
   borderRadius,
   onChange,
   maxLength,
@@ -25,7 +26,7 @@ export default function TextInput({
       </label>
       <TextField
         value={value}
-        style={{width:width}}
+        style={{ width: width }}
         variant={variant}
         type={type}
         name={name}
@@ -35,9 +36,10 @@ export default function TextInput({
         disabled={disabled}
         onChange={onChange}
         fullWidth={fullWidth}
+        autoComplete={autoComplete}
         InputProps={{
-          sx:{borderRadius:borderRadius},
-          maxLength:{maxLength}
+          sx: { borderRadius: borderRadius },
+          maxLength: { maxLength },
         }}
       />
     </>
