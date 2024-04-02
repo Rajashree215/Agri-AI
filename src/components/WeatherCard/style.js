@@ -23,4 +23,9 @@ export const WeatherStyles = styled("div")(({ theme }) => ({
     textAlign: "center",
     letterSpacing: 1,
   },
+  "@media (max-width:550px)": {
+    ".card": {
+      margin: "35vh auto 15vh auto",
+    },
+  },
 }));

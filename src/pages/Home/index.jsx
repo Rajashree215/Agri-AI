@@ -10,6 +10,7 @@ import { pagedata } from "./data";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { weatherapiurl } from "../../ApiUrl/WeatherApi";
+import ChatBot from "../../components/ChatBot";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ export default function Home() {
   const [weather, setWeather] = useState("");
   const [today, setToday] = useState("");
   const [temperature, setTemperature] = useState();
+  const [showChat, setShowChat] = useState(false);
 
   const getWeatherData = async () => {
     const res = await axios.get(weatherapiurl);
@@ -125,7 +127,11 @@ export default function Home() {
               borderRadius={0}
               disabled={true}
             />
-            <Button variant="contained" className="chatbtn">
+            <Button
+              variant="contained"
+              className="chatbtn"
+              onClick={() => setShowChat(true)}
+            >
               Chat with me
             </Button>
           </Box>
@@ -155,6 +161,7 @@ export default function Home() {
           </Button>
         ))}
       </Box>
+      <ChatBot open={showChat} handleCloseModal={() => setShowChat(false)} />
       <Footer />
     </HomeStyles>
   );

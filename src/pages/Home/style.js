@@ -29,7 +29,7 @@ export const HomeStyles = styled("div")(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-around",
-    gap:'2vh'
+    gap: "2vh",
   },
   ".chat-typo": {
     textAlign: "center",
@@ -46,10 +46,10 @@ export const HomeStyles = styled("div")(({ theme }) => ({
     borderRadius: 0,
     padding: "5px 1vw",
     fontWeight: "bold",
-    width:'25vh',
-    '&:hover':{
-      backgroundColor:'#669985',
-    }
+    width: "25vh",
+    "&:hover": {
+      backgroundColor: "#669985",
+    },
   },
   ".ctxtbox": {
     padding: "4vh 3vw",
@@ -73,6 +73,11 @@ export const HomeStyles = styled("div")(({ theme }) => ({
   ".btnimg": {
     height: "29vh",
     width: "55vh",
-    borderRadius:'4px'
+    borderRadius: "4px",
+  },
+  "@media (max-width:550px)": {
+    ".ctxtbox": {
+      width: "75vw",
+    },
   },
 }));

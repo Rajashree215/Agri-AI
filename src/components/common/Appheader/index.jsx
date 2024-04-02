@@ -13,7 +13,7 @@ import { PATH } from "../../../constants/routerConstant";
 import { AuthContext } from "../../../context/AuthContextProvider";
 import { Modal } from "@mui/material";
 
-export default function Appheader({titlescroll}) {
+export default function Appheader({ titlescroll }) {
   const { isLoggedIn, setIsLoggedIn } = React.useContext(AuthContext);
   const [openModal, setOpenModal] = React.useState(false);
 
@@ -21,12 +21,13 @@ export default function Appheader({titlescroll}) {
     setOpenModal(false);
   };
 
-  const handleLogout=()=>{
-    localStorage.removeItem('email');
+  const handleLogout = () => {
+    localStorage.removeItem("email");
+    localStorage.removeItem("uname");
     setIsLoggedIn(false);
     setOpenModal(false);
     navigate(PATH.LANDINGPAGE);
-  }
+  };
 
   const navigate = useNavigate();
 
@@ -56,7 +57,17 @@ export default function Appheader({titlescroll}) {
               sx={{ flexGrow: 1 }}
             >
               Agri AI
-              <Typography variant="caption" sx={{ paddingLeft:'2vw',fontWeight:'bold',fontSize:'1.5rem',fontStyle:'italic',fontFamily:'Baskerville Old Face',color:"#006a61" }}>
+              <Typography
+                variant="caption"
+                sx={{
+                  paddingLeft: "2vw",
+                  fontWeight: "bold",
+                  fontSize: "1.5rem",
+                  fontStyle: "italic",
+                  fontFamily: "Baskerville Old Face",
+                  color: "#006a61",
+                }}
+              >
                 {titlescroll}
               </Typography>
             </Typography>
